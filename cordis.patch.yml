@@ -1,0 +1,5 @@
+# dsh-valley-meter bundle patch: one host row over the web profile, resolved
+# through the profile's own node_modules where the package is installed.
+- insert:
+    - id: valley-meter
+      name: dsh-valley-meter
