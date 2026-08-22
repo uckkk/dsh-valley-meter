@@ -6,7 +6,7 @@
 
 Live off-peak countdown · period badge · official account balance · today's spend. Customizable valley color, numbers-only minimal mode, and switchable minimal ↔ detailed styles.
 
-[![version](https://img.shields.io/badge/version-0.1.0-4176E6)](https://github.com/istone/dsh-valley-meter)
+[![version](https://img.shields.io/badge/version-0.1.0-4176E6)](https://github.com/uckkk/dsh-valley-meter)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-dsh--plugin-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
 

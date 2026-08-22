@@ -6,7 +6,7 @@
 
 峰谷实时倒计时 · 时段徽标 · 官方账户余额 · 今日消耗 — 谷色可自定义,余额/花费纯数字极简模式,极简 ↔ 详细样式自由切换。
 
-[![version](https://img.shields.io/badge/version-0.1.0-4176E6)](https://github.com/istone/dsh-valley-meter)
+[![version](https://img.shields.io/badge/version-0.1.0-4176E6)](https://github.com/uckkk/dsh-valley-meter)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![dsh](https://img.shields.io/badge/DeepSeek%20Harness-dsh--plugin-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
 
