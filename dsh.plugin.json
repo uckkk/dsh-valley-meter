@@ -1,0 +1,12 @@
+{
+  "name": "dsh-valley-meter",
+  "description": "波谷倒计时小组件：峰谷实时倒计时与时段、官方账户余额、今日消耗；谷时颜色自定义、余额/花费纯数字极简模式，极简/详细样式自由切换。",
+  "version": "0.1.0",
+  "entry": {
+    "name": "dsh-valley-meter",
+    "inject": []
+  },
+  "client": {
+    "platform": "web"
+  }
+}

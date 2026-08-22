@@ -1,0 +1,130 @@
+{
+  "name": "dsh-valley-meter",
+  "version": "0.1.0",
+  "description": "波谷倒计时小组件：峰谷实时倒计时与时段、官方账户余额、今日消耗，谷时颜色自定义、余额/花费纯数字极简模式与极简/详细样式自由切换。Minimal peak/valley widget for DeepSeek Harness: live off-peak countdown & period, official account balance and today's spend, with a configurable valley color, a numbers-only minimal mode, and switchable minimal/detailed styles.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/types/client/index.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./typert": {
+      "default": "./lib/typert.host.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  },
+  "dshhub": {
+    "schemaVersion": 1,
+    "displayName": "dsh-valley-meter",
+    "summary": "波谷倒计时小组件：峰谷倒计时与时段、官方余额、今日消耗；谷色可自定义、余额/花费纯数字极简模式与极简/详细样式自由切换。",
+    "categories": [
+      "费用",
+      "Web UI",
+      "观测"
+    ],
+    "surfaces": [
+      "host",
+      "web"
+    ],
+    "capabilities": {
+      "provides": [
+        "service:valley-meter"
+      ]
+    },
+    "compatibility": {
+      "dsh": ">=0.1.0-rc.5",
+      "node": ">=20"
+    },
+    "permissions": {
+      "network": [
+        "https://api.deepseek.com"
+      ]
+    }
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "dsh.plugin.json",
+    "README.md",
+    "README.en.md",
+    "docs",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "pnpm run typecheck && pnpm run test && pnpm run build"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-client-locale": "*",
+    "@deepseek-ai/dsh-client-runtime": "*",
+    "@deepseek-ai/dsh-client-ui-settings": "*",
+    "@deepseek-ai/dsh-client-ui-slots": "*",
+    "react": "^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-runtime": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-ui-slots": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-ui-settings": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-client-locale": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "client-plugin",
+    "cost",
+    "peak",
+    "valley",
+    "off-peak",
+    "balance",
+    "countdown",
+    "费用",
+    "峰谷",
+    "波谷",
+    "倒计时",
+    "余额"
+  ],
+  "author": "istone <ad571@qq.com>",
+  "license": "MIT"
+}
