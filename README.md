@@ -14,7 +14,7 @@ English | **中文**
 
 </div>
 
-![卡片示意](docs/promo.png)
+![卡片示意](docs/widget.png)
 
 ## 这是什么
 
