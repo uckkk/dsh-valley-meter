@@ -14,7 +14,7 @@ Live off-peak countdown · period badge · official account balance · today's s
 
 </div>
 
-![card](docs/preview.png?v=2)
+![card](docs/preview.png?v=3)
 
 ## What it is
 
