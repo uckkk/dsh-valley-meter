@@ -1,8 +1,8 @@
-# dsh-valley-meter
+# Peak-Valley Meter (dsh-valley-meter)
 
 <div align="center">
 
-**DeepSeek Harness minimal valley / peak widget**
+**DeepSeek Harness peak/valley electricity meter: off-peak countdown, balance & spend**
 
 Live off-peak countdown · period badge · official account balance · today's spend. Customizable valley color, numbers-only minimal mode, and switchable minimal ↔ detailed styles.
 

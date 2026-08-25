@@ -1,8 +1,8 @@
-# dsh-valley-meter
+# 峰谷电表 dsh-valley-meter
 
 <div align="center">
 
-**DeepSeek Harness 波谷倒计时小组件 · 极简读数**
+**DeepSeek Harness 峰谷电表 · 波谷倒计时与余额读数**
 
 峰谷实时倒计时 · 时段徽标 · 官方账户余额 · 今日消耗 — 谷色可自定义,余额/花费纯数字极简模式,极简 ↔ 详细样式自由切换。
 
