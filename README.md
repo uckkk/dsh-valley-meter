@@ -16,6 +16,10 @@ English | **中文**
 
 ![卡片示意](docs/preview.png?v=4)
 
+**悬停浮现倒计时与方向**
+
+![悬停态](docs/screenshots/hover.png)
+
 ## 这是什么
 
 一个**极简**的 DeepSeek Harness 插件,在输入框下方(或侧边栏底部)挂一张深色圆角卡片,一屏集中在最关心的几个数字:

@@ -16,6 +16,10 @@ Live off-peak countdown · period badge · official account balance · today's s
 
 ![card](docs/preview.png?v=4)
 
+**Hover to reveal countdown & direction**
+
+![hover state](docs/screenshots/hover.png)
+
 ## What it is
 
 A **minimal** DeepSeek Harness plugin that shows a single compact dark card under the composer (or in the sidebar footer) with the numbers you care about most:
