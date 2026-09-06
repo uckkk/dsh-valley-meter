@@ -4,7 +4,7 @@
 
 **DeepSeek Harness peak/valley electricity meter: off-peak countdown, balance & spend**
 
-Live off-peak countdown · period badge · official account balance · today's spend. Customizable valley color, numbers-only minimal mode, and switchable minimal ↔ detailed styles.
+Balance-number chip · hover 24h peak/valley timeline · 5s official balance refresh · independent spend metering. 10 curated muted color presets plus custom valley/peak colors, all-Chinese UI.
 
 [![version](https://img.shields.io/badge/version-0.1.0-4176E6)](https://github.com/uckkk/dsh-valley-meter)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -14,30 +14,28 @@ Live off-peak countdown · period badge · official account balance · today's s
 
 </div>
 
-![card](docs/preview.png?v=4)
+![balance-number chip](docs/preview.png?v=4)
 
-**Hover to reveal countdown & direction**
+**Hover to reveal the peak/valley timeline**
 
 ![hover state](docs/screenshots/hover.png)
 
 ## What it is
 
-A **minimal** DeepSeek Harness plugin that shows a single compact dark card under the composer (or in the sidebar footer) with the numbers you care about most:
+A **minimal** DeepSeek Harness plugin that shows a low-key **balance-number chip** at the top-right of the composer; hovering reveals a **24-hour peak/valley timeline** to its left:
 
 | Readout | Description |
 |---|---|
-| **Off-peak countdown** | Live HH:MM:SS countdown to the next valley/peak switch |
-| **Period badge** | Whether it's currently Peak or Valley, plus the countdown target |
-| **Peak/Valley bar** | Peak (orange) / Valley (blue) segments with a marker at the current time |
-| **Account balance** | Official platform balance (the plugin queries `/user/balance` itself) |
-| **Today's spend** | Current-day cost (the plugin listens to `llm/stream` and meters in real time) |
+| **Balance chip** | Shows only the official account balance by default (the plugin queries `/user/balance` itself, refreshed every 5 seconds) |
+| **Peak/Valley timeline** | A 24h horizontal bar revealed on hover: Peak (orange) / Valley (blue) segments, a glowing white marker at the current local time, with 00/06/12/18/24 ticks above |
+| **Today's spend** | Current-day cost (the plugin listens to `llm/stream` and meters in real time into its ledger) |
 
 ## Key features
 
-- **Customizable valley color**: change the valley (or peak) color in settings, previewed live on the card.
-- **Numbers-only minimal mode**: hide the title for balance and/or today's spend and show only the number.
-- **Switchable styles**: **Detailed card** ↔ **Minimal** (tighter, core numbers only).
-- **Switchable position**: sidebar footer / under the composer (dock) / off.
+- **Color presets**: 10 curated muted presets (One Dark / Dracula / Nord / Tokyo Night / Gruvbox / Solarized + traditional Chinese & Pantone), or custom valley/peak colors via pickers.
+- **Hover to reveal**: only the balance number shows by default; the timeline appears on hover without taking composer space.
+- **Live balance**: official balance refreshes every 5 seconds automatically.
+- **Local-timezone timeline**: peak/valley windows (UTC) are converted to local time; a glowing white marker shows the current moment.
 - **Fully independent, real-time metering**: the plugin listens to `llm/stream` itself to capture usage, converts it to cost with its own price table, queries the DeepSeek official balance itself, and maintains its own ledger (`~/.dsh/storages/valley-meter/ledger.json`). It depends on no other plugin.
 
 ## Install
@@ -50,13 +48,11 @@ Then reload the dsh web page to see the card.
 
 ## Configuration
 
-Open **Settings → Peak / Valley**:
+Open **Settings → Peak-Valley Meter**:
 
-- **Valley color / Peak color**: color pickers, applied instantly.
-- **Style**: `card` (detailed) / `minimal`.
-- **Position**: composer footer / sidebar footer / off.
-- **Balance title** / **Today title**: disable for numbers-only minimal mode.
-- **Show period badge** / **Show countdown**: independent toggles.
+- **Color presets**: 10 presets (6 editor themes + 4 traditional Chinese / Pantone) or "Custom".
+- **Valley color / Peak color**: color pickers, applied instantly when Custom is selected.
+- **Balance title** / **Today title** / **Show countdown**: independent toggles.
 
 Config is written to `~/.dsh/storages/valley-meter/config.json`.
 
@@ -65,7 +61,7 @@ Config is written to `~/.dsh/storages/valley-meter/config.json`.
 The plugin meters and queries on its own, with no dependency on other plugins:
 
 - **Today's spend**: listens to `llm/stream` to capture each call's usage, converts it with the built-in model price table (peak/valley tiers) plus the peak/valley windows, and writes it to its own ledger `~/.dsh/storages/valley-meter/ledger.json`.
-- **Account balance**: queries the DeepSeek official `/user/balance` endpoint with the DSH credentials / `DEEPSEEK_API_KEY`; click the balance cell to refresh.
+- **Account balance**: queries the DeepSeek official `/user/balance` endpoint with the DSH credentials / `DEEPSEEK_API_KEY`; refreshed automatically every 5 seconds.
 - **Peak/valley windows**: the plugin's own config (default UTC 01–04, 06–10), adjustable in settings.
 
 When no API key is configured the balance shows "No data" while today's cost keeps accumulating — it never errors.

@@ -1,7 +1,7 @@
 {
   "name": "dsh-valley-meter",
   "version": "0.1.0",
-  "description": "波谷倒计时小组件：峰谷实时倒计时与时段、官方账户余额、今日消耗，谷时颜色自定义、余额/花费纯数字极简模式与极简/详细样式自由切换。Minimal peak/valley widget for DeepSeek Harness: live off-peak countdown & period, official account balance and today's spend, with a configurable valley color, a numbers-only minimal mode, and switchable minimal/detailed styles.",
+  "description": "波谷倒计时小组件：输入框上方余额数字徽章，悬停浮现 24 小时峰谷时间轴（峰橙/谷蓝 + 当前时刻指针），官方余额 5 秒刷新、今日消耗独立计费，10 套配色预置 + 谷/峰色自定义。Minimal peak/valley widget for DeepSeek Harness: a balance-number chip above the composer with a hover 24h peak/valley timeline, 5s official balance refresh, independent spend metering, and 10 color presets plus custom valley/peak colors.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -35,7 +35,7 @@
   "dshhub": {
     "schemaVersion": 1,
     "displayName": "dsh-valley-meter",
-    "summary": "波谷倒计时小组件：峰谷倒计时与时段、官方余额、今日消耗；谷色可自定义、余额/花费纯数字极简模式与极简/详细样式自由切换。",
+    "summary": "峰谷电表：输入框上方余额数字徽章，悬停浮现 24 小时峰谷时间轴（峰橙/谷蓝 + 当前时刻指针），官方余额 5 秒刷新、今日消耗独立计费，10 套配色预置。",
     "categories": [
       "费用",
       "Web UI",
