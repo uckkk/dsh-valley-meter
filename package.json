@@ -1,6 +1,6 @@
 {
   "name": "dsh-valley-meter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "波谷倒计时小组件：输入框上方余额数字徽章，悬停浮现 24 小时峰谷时间轴（峰橙/谷蓝 + 当前时刻指针），官方余额 5 秒刷新、今日消耗独立计费，10 套配色预置 + 谷/峰色自定义。Minimal peak/valley widget for DeepSeek Harness: a balance-number chip above the composer with a hover 24h peak/valley timeline, 5s official balance refresh, independent spend metering, and 10 color presets plus custom valley/peak colors.",
   "type": "module",
   "main": "lib/index.js",
