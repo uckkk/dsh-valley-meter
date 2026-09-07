@@ -2,23 +2,26 @@
 
 <div align="center">
 
-**DeepSeek Harness 峰谷电表 · 波谷倒计时与余额读数**
+**DeepSeek Harness 峰谷电表 · 余额徽章 + 悬停峰谷时间轴**
 
 余额数字徽章 · 悬停 24 小时峰谷时间轴 · 官方余额 5 秒刷新 · 今日消耗独立计费 — 10 套沉稳配色预置 + 谷/峰色自定义,全中文界面。
 
-[![version](https://img.shields.io/badge/version-0.1.0-4176E6)](https://github.com/uckkk/dsh-valley-meter)
+[![npm version](https://img.shields.io/npm/v/dsh-valley-meter)](https://www.npmjs.com/package/dsh-valley-meter)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-valley-meter)](https://www.npmjs.com/package/dsh-valley-meter)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![dsh](https://img.shields.io/badge/DeepSeek%20Harness-dsh--plugin-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
+[![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-dsh--plugin-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
 
-English | **中文**
+**English** | 中文
 
 </div>
 
-![余额数字徽章](docs/preview.png?v=4)
+![余额数字徽章](docs/preview.png?v=5)
 
 **悬停浮现峰谷时间轴**
 
 ![悬停态](docs/screenshots/hover.png)
+
+![悬停展开演示](docs/demo.gif)
 
 ## 这是什么
 
@@ -32,17 +35,20 @@ English | **中文**
 
 ## 核心特性
 
-- **配色方案**:内置 10 套沉稳配色预置(One Dark / Dracula / Nord / Tokyo Night / Gruvbox / Solarized + 中国传统色 / 潘通),也可用拾色器自定义谷色 / 峰色,改完即时生效。
-- **悬停即见**:默认只显示余额数字,光标悬停才浮现峰谷时间轴,不占输入区空间。
-- **实时余额**:官方余额每 5 秒自动刷新,无需手动操作。
-- **本地时区时间轴**:峰/谷时段按 UTC 窗口自动换算成本地时区显示,白色发光指针标当前时刻。
-- **完全独立、实时计费**:插件自己监听 `llm/stream` 捕获用量、按官方价格折算费用,自己查询 DeepSeek 官方余额,自己维护账本(`~/.dsh/storages/valley-meter/ledger.json`),**不依赖任何其它插件**。
+- 🎨 **配色方案**:内置 10 套沉稳配色预置(One Dark / Dracula / Nord / Tokyo Night / Gruvbox / Solarized + 中国传统色 / 潘通),也可用拾色器自定义谷色 / 峰色,改完即时生效。
+- 👆 **悬停即见**:默认只显示余额数字,光标悬停才浮现峰谷时间轴,不占输入区空间。
+- ⚡ **实时余额**:官方余额每 5 秒自动刷新,无需手动操作。
+- 🕐 **本地时区时间轴**:峰/谷时段按 UTC 窗口自动换算成本地时区显示,白色发光指针标当前时刻。
+- 🔌 **完全独立、实时计费**:插件自己监听 `llm/stream` 捕获用量、按官方价格折算费用,自己查询 DeepSeek 官方余额,自己维护账本(`~/.dsh/storages/valley-meter/ledger.json`),**不依赖任何其它插件**。
 
 ## 安装
 
 ```bash
-# 在 web profile 中安装(把 <包路径> 换成该插件包的本地路径或 npm 包名)
-dsh plugin --profile web add <包路径>
+# npm（推荐）
+npm install dsh-valley-meter
+
+# 或从 GitHub 直发安装
+dsh plugin add github:uckkk/dsh-valley-meter
 ```
 
 然后重启 dsh web 页面即可看到余额数字徽章。

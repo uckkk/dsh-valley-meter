@@ -2,23 +2,26 @@
 
 <div align="center">
 
-**DeepSeek Harness peak/valley electricity meter: off-peak countdown, balance & spend**
+**DeepSeek Harness peak/valley meter · balance badge + hover peak/valley timeline**
 
-Balance-number chip · hover 24h peak/valley timeline · 5s official balance refresh · independent spend metering. 10 curated muted color presets plus custom valley/peak colors, all-Chinese UI.
+Balance-number chip · hover 24h peak/valley timeline · 5s official balance refresh · independent spend metering — 10 curated muted color presets plus custom valley/peak colors, all-Chinese UI.
 
-[![version](https://img.shields.io/badge/version-0.1.0-4176E6)](https://github.com/uckkk/dsh-valley-meter)
+[![npm version](https://img.shields.io/npm/v/dsh-valley-meter)](https://www.npmjs.com/package/dsh-valley-meter)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-valley-meter)](https://www.npmjs.com/package/dsh-valley-meter)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![dsh](https://img.shields.io/badge/DeepSeek%20Harness-dsh--plugin-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
+[![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-dsh--plugin-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
 
 **English** | [中文](README.md)
 
 </div>
 
-![balance-number chip](docs/preview.png?v=4)
+![balance-number chip](docs/preview.png?v=5)
 
 **Hover to reveal the peak/valley timeline**
 
 ![hover state](docs/screenshots/hover.png)
+
+![hover demo](docs/demo.gif)
 
 ## What it is
 
@@ -32,19 +35,23 @@ A **minimal** DeepSeek Harness plugin that shows a low-key **balance-number chip
 
 ## Key features
 
-- **Color presets**: 10 curated muted presets (One Dark / Dracula / Nord / Tokyo Night / Gruvbox / Solarized + traditional Chinese & Pantone), or custom valley/peak colors via pickers.
-- **Hover to reveal**: only the balance number shows by default; the timeline appears on hover without taking composer space.
-- **Live balance**: official balance refreshes every 5 seconds automatically.
-- **Local-timezone timeline**: peak/valley windows (UTC) are converted to local time; a glowing white marker shows the current moment.
-- **Fully independent, real-time metering**: the plugin listens to `llm/stream` itself to capture usage, converts it to cost with its own price table, queries the DeepSeek official balance itself, and maintains its own ledger (`~/.dsh/storages/valley-meter/ledger.json`). It depends on no other plugin.
+- 🎨 **Color presets**: 10 curated muted presets (One Dark / Dracula / Nord / Tokyo Night / Gruvbox / Solarized + traditional Chinese & Pantone), or custom valley/peak colors via pickers.
+- 👆 **Hover to reveal**: only the balance number shows by default; the timeline appears on hover without taking composer space.
+- ⚡ **Live balance**: official balance refreshes every 5 seconds automatically.
+- 🕐 **Local-timezone timeline**: peak/valley windows (UTC) are converted to local time; a glowing white marker shows the current moment.
+- 🔌 **Fully independent, real-time metering**: the plugin listens to `llm/stream` itself to capture usage, converts it to cost with its own price table, queries the DeepSeek official balance itself, and maintains its own ledger (`~/.dsh/storages/valley-meter/ledger.json`). It depends on no other plugin.
 
 ## Install
 
 ```bash
-dsh plugin --profile web add <package-path>
+# npm (recommended)
+npm install dsh-valley-meter
+
+# or install straight from GitHub
+dsh plugin add github:uckkk/dsh-valley-meter
 ```
 
-Then reload the dsh web page to see the card.
+Then reload the dsh web page to see the balance-number chip.
 
 ## Configuration
 
