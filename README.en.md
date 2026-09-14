@@ -29,12 +29,13 @@ A **minimal** DeepSeek Harness plugin that shows a low-key **balance-number chip
 
 | Readout | Description |
 |---|---|
-| **Balance chip** | Shows only the official account balance by default (the plugin queries `/user/balance` itself, refreshed every 5 seconds) |
+| **Balance chip** | Shows only the official account balance by default (the plugin queries `/user/balance` itself, refreshed every 5 seconds). **The whole chip is clickable: clicking opens the DeepSeek top-up page in a new tab.** |
 | **Peak/Valley timeline** | A 24h horizontal bar revealed on hover: Peak (orange) / Valley (blue) segments, a glowing white marker at the current local time, with 00/06/12/18/24 ticks above |
 | **Today's spend** | Current-day cost (the plugin listens to `llm/stream` and meters in real time into its ledger) |
 
 ## Key features
 
+- 💳 **One-click top-up**: clicking the balance chip opens the official DeepSeek top-up page (`platform.deepseek.com/top_up`) in a new tab, so you don't have to hunt for the entry when the balance runs low.
 - 🎨 **Color presets**: 10 curated muted presets (One Dark / Dracula / Nord / Tokyo Night / Gruvbox / Solarized + traditional Chinese & Pantone), or custom valley/peak colors via pickers.
 - 👆 **Hover to reveal**: only the balance number shows by default; the timeline appears on hover without taking composer space.
 - ⚡ **Live balance**: official balance refreshes every 5 seconds automatically.
