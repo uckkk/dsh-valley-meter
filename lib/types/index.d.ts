@@ -4,6 +4,8 @@ export interface PeakPhase {
   nextAtMs: number
   nextIntoPeak: boolean
   windows?: Array<{ start: number; end: number }>
+  /** 周末全天低谷(官方 2026-08-23 起):为 true 时整日按低谷价,时间轴不画峰段。 */
+  offPeakAllDay?: boolean
 }
 
 export interface Balance {
@@ -25,6 +27,8 @@ export interface ValleyConfig {
   style: string
   showPeriod: boolean
   showCountdown: boolean
+  /** 是否应用「周六周日全天低谷」规则(默认 true)。 */
+  weekendOffPeak: boolean
 }
 
 export interface ValleyState {

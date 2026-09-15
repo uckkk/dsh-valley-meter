@@ -30,7 +30,7 @@ A **minimal** DeepSeek Harness plugin that shows a low-key **balance-number chip
 | Readout | Description |
 |---|---|
 | **Balance chip** | Shows only the official account balance by default (the plugin queries `/user/balance` itself, refreshed every 5 seconds). Two groups inside: the currency symbol and the number — nothing else by default. |
-| **Peak/Valley timeline** | A 24h horizontal bar revealed on hover: Peak (orange) / Valley (blue) segments, a glowing white marker at the current local time, with 00/06/12/18/24 ticks above |
+| **Peak/Valley timeline** | A 24h horizontal bar revealed on hover: Peak (orange) / Valley (blue) segments, a glowing white marker at the current local time, with 00/06/12/18/24 ticks above; on weekends the whole bar is off-peak blue |
 | **Today's spend** | Current-day cost (the plugin listens to `llm/stream` and meters in real time into its ledger) |
 
 ## Key features
@@ -40,6 +40,7 @@ A **minimal** DeepSeek Harness plugin that shows a low-key **balance-number chip
 - 👆 **Hover to reveal**: only the balance number shows by default; the timeline appears on hover without taking composer space.
 - ⚡ **Live balance**: official balance refreshes every 5 seconds automatically.
 - 🕐 **Local-timezone timeline**: peak/valley windows (UTC) are converted to local time; a glowing white marker shows the current moment.
+- 🗓️ **Weekend all off-peak (official rule)**: since 2026-08-23 00:00 (Beijing time) Saturday and Sunday are billed at the off-peak price all day. The plugin decides by **Beijing time**, shows an all-valley timeline on those days, meters spend at the off-peak tier (no more double-charging weekends at peak rates) and counts down to Monday 09:00. Can be turned off in the settings panel.
 - 🔌 **Fully independent, real-time metering**: the plugin listens to `llm/stream` itself to capture usage, converts it to cost with its own price table, queries the DeepSeek official balance itself, and maintains its own ledger (`~/.dsh/storages/valley-meter/ledger.json`). It depends on no other plugin.
 
 ## Install
@@ -61,6 +62,7 @@ Open **Settings → Peak-Valley Meter**:
 - **Color presets**: 10 presets (6 editor themes + 4 traditional Chinese / Pantone) or "Custom".
 - **Valley color / Peak color**: color pickers, applied instantly when Custom is selected.
 - **Balance title** / **Today title** / **Show countdown**: independent toggles.
+- **Weekend all off-peak**: on by default. Since 2026-08-23 the official rule bills Saturday and Sunday at the off-peak price all day; turn this off to fall back to plain peak/valley windows on weekends.
 
 Config is written to `~/.dsh/storages/valley-meter/config.json`.
 
@@ -70,7 +72,8 @@ The plugin meters and queries on its own, with no dependency on other plugins:
 
 - **Today's spend**: listens to `llm/stream` to capture each call's usage, converts it with the built-in model price table (peak/valley tiers) plus the peak/valley windows, and writes it to its own ledger `~/.dsh/storages/valley-meter/ledger.json`.
 - **Account balance**: queries the DeepSeek official `/user/balance` endpoint with the DSH credentials / `DEEPSEEK_API_KEY`; refreshed automatically every 5 seconds.
-- **Peak/valley windows**: the plugin's own config (default UTC 01–04, 06–10), adjustable in settings.
+- **Peak/valley windows**: the plugin's own config (default UTC 01–04, 06–10 = Beijing 09:00–12:00 and 14:00–18:00), adjustable in settings.
+- **Weekend rule**: since 2026-08-23 00:00 Beijing time, Saturday and Sunday are billed at the off-peak price all day. On weekdays the peak hours are Beijing 9:00–12:00 and 14:00–18:00, and the off-peak price is half the peak price. The weekend test is done in Beijing time, and moments before the rule took effect still use the old windows.
 
 When no API key is configured the balance shows "No data" while today's cost keeps accumulating — it never errors.
 
