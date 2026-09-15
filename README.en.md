@@ -72,7 +72,7 @@ The plugin meters and queries on its own, with no dependency on other plugins:
 
 - **Today's spend**: listens to `llm/stream` to capture each call's usage, converts it with the built-in model price table (peak/valley tiers) plus the peak/valley windows, and writes it to its own ledger `~/.dsh/storages/valley-meter/ledger.json`.
 - **Account balance**: queries the DeepSeek official `/user/balance` endpoint with the DSH credentials / `DEEPSEEK_API_KEY`; refreshed automatically every 5 seconds.
-- **Peak/valley windows**: the plugin's own config (default UTC 01–04, 06–10 = Beijing 09:00–12:00 and 14:00–18:00), adjustable in settings.
+- **Peak/valley windows**: built into the plugin (default UTC 01–04, 06–10 = Beijing 09:00–12:00 and 14:00–18:00) and stored as `peakWindows` in config.json; the settings panel only exposes the weekend-rule toggle, not a window editor.
 - **Weekend rule**: since 2026-08-23 00:00 Beijing time, Saturday and Sunday are billed at the off-peak price all day. On weekdays the peak hours are Beijing 9:00–12:00 and 14:00–18:00, and the off-peak price is half the peak price. The weekend test is done in Beijing time, and moments before the rule took effect still use the old windows.
 
 When no API key is configured the balance shows "No data" while today's cost keeps accumulating — it never errors.
