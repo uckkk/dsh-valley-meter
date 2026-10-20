@@ -5,8 +5,8 @@
     "zh": "峰谷电表"
   },
   "description": {
-    "en": "Peak/valley electricity meter for the DSH composer: a minimal balance chip in the composer footer with a full-width 24h peak/valley timeline along the card's bottom edge on hover, 5s official balance refresh, and independent spend metering. Adapted for DSH 0.2.",
-    "zh": "DSH 输入框右下角的峰谷电表：极简余额徽章 + 悬停时沿输入卡片下沿整行浮现的 24 小时峰谷时间轴，官方余额 5 秒刷新，今日消耗独立计费。已适配 DSH 0.2。"
+    "en": "Peak/valley electricity meter for the DSH composer: a plain-text balance in the footer (orange below ¥10, red below ¥5, blinking below ¥2; click to top up) and a rounded, 80%-width 24h peak/valley timeline on hover, with 5s official balance refresh and independent spend metering. Adapted for DSH 0.2.",
+    "zh": "DSH 输入框右下角的峰谷电表：底栏纯文字余额（<¥10 橙 / <¥5 红 / <¥2 闪烁，点击直达充值）+ 悬停时沿输入卡片下沿浮现的 80% 宽圆角 24 小时峰谷时间轴，官方余额 5 秒刷新，今日消耗独立计费。已适配 DSH 0.2。"
   },
   "metadata": {
     "categories": {
@@ -46,8 +46,8 @@
         "zh": "峰谷电表"
       },
       "description": {
-        "en": "A minimal balance chip in the composer footer (bottom-right). Hover it for a full-width 24h peak/valley timeline along the composer card's bottom edge (orange peak, blue valley) with a live marker, official balance refreshed every 5s, and today's spend metered from llm/stream. Handles the official weekend all-off-peak rule (since 2026-08-23) in both the timeline and billing; 10 color presets plus custom peak/valley colors.",
-        "zh": "输入框右下角（底栏）一枚极简余额徽章；悬停时沿输入卡片下沿整行浮现 24 小时峰谷时间轴（峰橙/谷蓝 + 当前时刻指针），官方余额 5 秒刷新，今日消耗由 llm/stream 独立计费。时间轴与计费都遵循官方周末全天低谷规则（2026-08-23 起）；内置 10 套配色并支持自定义峰/谷色。"
+        "en": "A plain-text balance in the composer footer (bottom-right): no background box, same 13px size as the status row, bold; orange below ¥10, red below ¥5, blinking below ¥2, and the whole text opens the official top-up page. Hover it for a rounded, 80%-width 24h peak/valley timeline along the composer card's bottom edge with a live marker, official balance refreshed every 5s, and today's spend metered from llm/stream. Handles the official weekend all-off-peak rule (since 2026-08-23) in both the timeline and billing; 10 color presets plus custom peak/valley colors.",
+        "zh": "输入框右下角（底栏）纯文字余额：无背景框，与状态行同字号（13px）加粗；<¥10 橙色、<¥5 红色、<¥2 红色闪烁，整枚文字点击直达官方充值页。悬停时沿输入卡片下沿浮现 80% 宽、四角圆角的 24 小时峰谷时间轴（峰橙/谷蓝 + 当前时刻指针），官方余额 5 秒刷新，今日消耗由 llm/stream 独立计费。时间轴与计费都遵循官方周末全天低谷规则（2026-08-23 起）；内置 10 套配色并支持自定义峰/谷色。"
       },
       "icon": "icon.svg",
       "author": "istone",

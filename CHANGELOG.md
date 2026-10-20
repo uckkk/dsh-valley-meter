@@ -4,8 +4,10 @@
 
 适配 DSH 0.2（0.2.1-rc.2，最新官方版）。
 
-- **底栏布局重排**:余额徽章从输入框上方移到输入框右下角(底栏,与上下文占用环同一行),不再占用输入区上方空间;峰谷时间轴改为悬停时沿输入卡片下沿整行浮现(不再固定在左侧 240px)。
-- **挂载点调整**:客户端注册从 `conversation.input.dock` 改为 `conversation.composer.dock`,组件以绝对定位覆盖 composer seat,不挤动 Activity/Usage/ContextMeter 等既有读数。
+- **底栏布局重排**:余额徽章从输入框上方移到输入框右下角(底栏),并进一步改为**纯文字余额**(无背景框/边框,13px、字重 600,与状态行一致);整枚文字都是充值链接,点击新页签打开官方充值页。
+- **余额告警色**:<¥10 橙色、<¥5 红色、<¥2 红色闪烁(`prefers-reduced-motion` 下不闪)。
+- **时间轴长度**:从卡片全宽改为**卡片宽度的 80%**、右对齐;新增 `vm-trackfill` 圆角裁切层,轨道四角圆角且指针光晕不被裁掉。
+- **挂载点调整**:客户端注册从 `conversation.input.dock` 改为 `conversation.composer.dock`,并以运行时测量的输入卡片左右缘收窄覆盖层(宽窗口下 seat 比卡片宽),徽章/时间轴严格贴卡片边缘。
 - **修复 HMR 样式不更新**:移除 `__vmStylesAdopted` 一次性守卫,每次 apply 都写回当前 bundle 的 `<style>`;此前改版 CSS 在同一页面永远不会生效。
 
 - **Typert 清单升级**:0.2 的 `typert-loader` 要求每个 invocation 的 codec 为 strict codec 且带 `create()` 工厂。`lib/typert.host.js` 改用 `createTypertRemoteInfo()` 组装,`TYPERT.invocations` 直接返回 `$remote.descriptors`;已用 0.2 的真实 `validateTypertManifest()` 通过校验。

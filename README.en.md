@@ -23,12 +23,13 @@
 
 ## What it is
 
-A **minimal** DeepSeek Harness plugin that shows a low-key **balance-number chip** in the composer footer (bottom-right); hovering reveals a **24-hour peak/valley timeline** across the full width of the card's bottom edge:
+A **minimal** DeepSeek Harness plugin that shows a low-key **balance number** in the composer footer (bottom-right); hovering reveals a **24-hour peak/valley timeline** along the card's bottom edge:
 
 | Readout | Description |
 |---|---|
-| **Balance chip** | Shows only the official account balance by default (the plugin queries `/user/balance` itself, refreshed every 5 seconds). Two groups inside: the currency symbol and the number — nothing else by default. |
-| **Peak/Valley timeline** | A full-width 24h bar revealed on hover along the composer card's bottom edge: Peak (orange) / Valley (blue) segments, a glowing white marker at the current local time, with 00/06/12/18/24 ticks above; on weekends the whole bar is off-peak blue |
+| **Balance number** | Plain text, no background box, same 13px size as the footer status row, bold. Shows the official account balance by default (the plugin queries `/user/balance` itself, refreshed every 5 seconds). **The whole text is a top-up link** opening the official top-up page in a new tab. |
+| **Balance warning color** | Below ¥10 it turns orange, below ¥5 red, and below ¥2 red and blinking; at ¥10 or above it uses the default secondary text color. |
+| **Peak/Valley timeline** | A 24h bar revealed on hover along the composer card's bottom edge: 80% of the card width, right-aligned, rounded ends; Peak (orange) / Valley (blue) segments and a glowing white marker at the current local time; on weekends the whole bar is off-peak blue |
 | **Today's spend** | Current-day cost (the plugin listens to `llm/stream` and meters in real time into its ledger) |
 
 ## DSH 0.2 compatibility
@@ -45,9 +46,10 @@ DSH 0.2 changed the plugin kernel in breaking ways; 0.2.0 adapts every affected 
 
 ## Key features
 
-- 💳 **One-click top-up**: clicking the currency symbol inside the chip opens the official DeepSeek top-up page (`platform.deepseek.com/top_up`) in a new tab. Hovering the chip fades in a circular backdrop under the symbol whose left arc coincides exactly with the chip's own left rounded edge.
+- 💳 **One-click top-up**: the whole balance (symbol + number) is a link; clicking it opens the official DeepSeek top-up page (`platform.deepseek.com/top_up`) in a new tab.
+- 🚦 **Balance warning color**: orange below ¥10, red below ¥5, and red with a blink below ¥2 (the blink respects `prefers-reduced-motion`). Same 13px size as the footer status row, bold, no background box.
 - 🎨 **Color presets**: 10 curated muted presets (One Dark / Dracula / Nord / Tokyo Night / Gruvbox / Solarized + traditional Chinese & Pantone), or custom valley/peak colors via pickers.
-- 👆 **Hover to reveal**: only the balance number shows by default; on hover the timeline spans the card's bottom edge without taking composer space.
+- 👆 **Hover to reveal**: only the balance shows by default; on hover the timeline appears along the card's bottom edge (80% of the card width, right-aligned) without taking composer space.
 - ⚡ **Live balance**: official balance refreshes every 5 seconds automatically.
 - 🕐 **Local-timezone timeline**: peak/valley windows (UTC) are converted to local time; a glowing white marker shows the current moment.
 - 🗓️ **Weekend all off-peak (official rule)**: since 2026-08-23 00:00 (Beijing time) Saturday and Sunday are billed at the off-peak price all day. The plugin decides by **Beijing time**, shows an all-valley timeline on those days, meters spend at the off-peak tier (no more double-charging weekends at peak rates) and counts down to Monday 09:00. Can be turned off in the settings panel.
