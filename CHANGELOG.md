@@ -4,6 +4,10 @@
 
 适配 DSH 0.2（0.2.1-rc.2，最新官方版）。
 
+- **底栏布局重排**:余额徽章从输入框上方移到输入框右下角(底栏,与上下文占用环同一行),不再占用输入区上方空间;峰谷时间轴改为悬停时沿输入卡片下沿整行浮现(不再固定在左侧 240px)。
+- **挂载点调整**:客户端注册从 `conversation.input.dock` 改为 `conversation.composer.dock`,组件以绝对定位覆盖 composer seat,不挤动 Activity/Usage/ContextMeter 等既有读数。
+- **修复 HMR 样式不更新**:移除 `__vmStylesAdopted` 一次性守卫,每次 apply 都写回当前 bundle 的 `<style>`;此前改版 CSS 在同一页面永远不会生效。
+
 - **Typert 清单升级**:0.2 的 `typert-loader` 要求每个 invocation 的 codec 为 strict codec 且带 `create()` 工厂。`lib/typert.host.js` 改用 `createTypertRemoteInfo()` 组装,`TYPERT.invocations` 直接返回 `$remote.descriptors`;已用 0.2 的真实 `validateTypertManifest()` 通过校验。
 - **客户端 RPC 修复**:0.2 的 Client Typert 注册表同样要求 result / parameter codec 带 `create()`(`validateCodec`)。旧的 `{mode,typeSymbol,schema}` 会被拒绝,改为 `create: () => ({ parse })`。
 - **`settings` 服务变更**:0.2 移除了 `settings.get(ns)`,只保留表单 `describe/update/configure`。余额查询改用 `credentials.resolve()` + `DEEPSEEK_BASE_URL`(或配置 `baseURL`)+ 内置官方端点,不再依赖设置分节。
