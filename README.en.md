@@ -4,12 +4,10 @@
 
 **DeepSeek Harness peak/valley meter · balance badge + hover peak/valley timeline**
 
-Balance-number chip · hover 24h peak/valley timeline · 5s official balance refresh · independent spend metering — 10 curated muted color presets plus custom valley/peak colors, all-Chinese UI.
+**Adapted for DSH 0.2 (0.2.1-rc.2)** · balance-number chip · hover 24h peak/valley timeline · 5s official balance refresh · independent spend metering — 10 curated muted color presets plus custom valley/peak colors.
 
-[![npm version](https://img.shields.io/npm/v/dsh-valley-meter)](https://www.npmjs.com/package/dsh-valley-meter)
-[![npm downloads](https://img.shields.io/npm/dm/dsh-valley-meter)](https://www.npmjs.com/package/dsh-valley-meter)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-dsh--plugin-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
+[![DeepSeek Harness](https://img.shields.io/badge/DeepSeek%20Harness-0.2.1--rc.2-4176E6)](https://github.com/deepseek-ai/deepseek-harness)
 
 **English** | [中文](README.md)
 
@@ -33,6 +31,18 @@ A **minimal** DeepSeek Harness plugin that shows a low-key **balance-number chip
 | **Peak/Valley timeline** | A 24h horizontal bar revealed on hover: Peak (orange) / Valley (blue) segments, a glowing white marker at the current local time, with 00/06/12/18/24 ticks above; on weekends the whole bar is off-peak blue |
 | **Today's spend** | Current-day cost (the plugin listens to `llm/stream` and meters in real time into its ledger) |
 
+## DSH 0.2 compatibility
+
+DSH 0.2 changed the plugin kernel in breaking ways; 0.2.0 adapts every affected seam:
+
+- **Typert manifest**: the 0.2 `typert-loader` requires a strict codec with a `create()` factory on every invocation. The manifest is now assembled with `createTypertRemoteInfo()`, matching both the Host and Client registries.
+- **Client RPC contribution**: the 0.2 Client Typert registry also requires `create()` on result/parameter codecs; `$mount(contribution)` keeps its contract, but the old `{ mode, typeSymbol, schema }` shape is rejected.
+- **`settings` service**: 0.2 keeps only the form surface (`describe/update/configure`) and removed `get(ns)`; balance lookup no longer reads a settings section and uses `credentials.resolve()` plus `DEEPSEEK_BASE_URL` / the built-in official endpoint.
+- **`dsh.client` declaration**: 0.2 splits module dependencies into `dsh.client.inject` / `dsh.client.external`; the plugin only uses the baseline `react`, so it no longer declares the removed `dsh-client-runtime` / `dsh-client-ui-slots`.
+- **Settings copy**: the 0.2 slot renderer injects `t` from `entry.locale` (a language *namespace*). The plugin keeps its own function-valued dictionary, so it omits `locale` and supplies `t` through its inject face instead of rendering raw keys.
+- **Manifest**: adds `dsh.manifestVersion: 1` and `engines.dsh: ">=0.2.0-rc.1"`, which the plugin manager checks before installing.
+- **Model price table**: adds the 0.2 model id `deepseek-flash` (DeepSeek-V4.1-Flash), keeps `deepseek-v4-pro`, and keeps old ids for ledger/backward compatibility.
+
 ## Key features
 
 - 💳 **One-click top-up**: clicking the currency symbol inside the chip opens the official DeepSeek top-up page (`platform.deepseek.com/top_up`) in a new tab. Hovering the chip fades in a circular backdrop under the symbol whose left arc coincides exactly with the chip's own left rounded edge.
@@ -45,15 +55,36 @@ A **minimal** DeepSeek Harness plugin that shows a low-key **balance-number chip
 
 ## Install
 
-```bash
-# npm (recommended)
-npm install dsh-valley-meter
+### Option 1: local link (development / personal use)
 
-# or install straight from GitHub
-dsh plugin add github:uckkk/dsh-valley-meter
+```bash
+# in the plugin repository
+pnpm install
+
+# link it into the current profile (desktop for the desktop app; web for dsh web)
+dsh plugin --profile desktop add link:/absolute/path/to/dsh-valley-meter
 ```
 
-Then reload the dsh web page to see the balance-number chip.
+Then append a row to the profile's `cordis.patch.yml` (or select the bundle in the plugin manager):
+
+```yaml
+- insert:
+    - id: valley-meter
+      name: dsh-valley-meter
+```
+
+HMR recomposes the profile and the browser loads the new client bundle without a restart.
+
+### Option 2: market / npm
+
+The DSH 0.2 market index installs npm sources:
+
+```bash
+dsh plugin --profile desktop add dsh-valley-meter@0.2.0
+```
+
+Once published, add this repository's `market/index.json` in
+**Plugins → More → Custom plugin markets → Add index source** and install from **Discover**.
 
 ## Configuration
 
@@ -71,7 +102,7 @@ Config is written to `~/.dsh/storages/valley-meter/config.json`.
 The plugin meters and queries on its own, with no dependency on other plugins:
 
 - **Today's spend**: listens to `llm/stream` to capture each call's usage, converts it with the built-in model price table (peak/valley tiers) plus the peak/valley windows, and writes it to its own ledger `~/.dsh/storages/valley-meter/ledger.json`.
-- **Account balance**: queries the DeepSeek official `/user/balance` endpoint with the DSH credentials / `DEEPSEEK_API_KEY`; refreshed automatically every 5 seconds.
+- **Account balance**: resolves `DEEPSEEK_API_KEY` through DSH 0.2's `ctx.credentials.resolve()` (re-read on every operation, so a rotated key needs no restart) and queries the DeepSeek official `/user/balance` endpoint; refreshed automatically every 5 seconds.
 - **Peak/valley windows**: built into the plugin (default UTC 01–04, 06–10 = Beijing 09:00–12:00 and 14:00–18:00) and stored as `peakWindows` in config.json; the settings panel only exposes the weekend-rule toggle, not a window editor.
 - **Weekend rule**: since 2026-08-23 00:00 Beijing time, Saturday and Sunday are billed at the off-peak price all day. On weekdays the peak hours are Beijing 9:00–12:00 and 14:00–18:00, and the off-peak price is half the peak price. The weekend test is done in Beijing time, and moments before the rule took effect still use the old windows.
 
@@ -81,9 +112,12 @@ When no API key is configured the balance shows "No data" while today's cost kee
 
 ```bash
 pnpm install
-pnpm run build   # build lib/client.js bundle
-pnpm run check   # typecheck + test + build
+pnpm test    # node:test: peak/valley/weekend/billing + Typert manifest and codecs
+pnpm build   # artifact consistency checks (hand-authored bundles, no bundler)
+pnpm check   # syntax check + test + build
 ```
+
+`lib/` is hand-authored: `lib/index.js` (Host), `lib/typert.host.js` (Typert manifest), and `lib/client.js` (single-file browser bundle). `build.mjs` checks the manifest, exports, registration id, and strict codecs; it does not bundle.
 
 ## License
 

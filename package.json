@@ -1,7 +1,7 @@
 {
   "name": "dsh-valley-meter",
-  "version": "0.1.6",
-  "description": "峰谷电表：DeepSeek 用量小助手。输入框上方一枚极简余额徽章（框内只有「¥ + 余额数字」两组，点击 ¥ 在新页签打开官方充值页），悬停浮现 24 小时峰谷时间轴（橙=峰、蓝=谷）；按官方规则处理周末全天低谷（2026-08-23 起周六周日全天按低谷价计费，界面与计费同步）；官方余额 5 秒实时刷新，今日消耗独立计费。All-in-one DeepSeek peak/valley meter: minimal balance chip with a one-click top-up link, hover 24h peak/valley timeline, official weekend all-off-peak rule (since 2026-08-23), 5s balance refresh and independent spend metering.",
+  "version": "0.2.0",
+  "description": "峰谷电表：DeepSeek Harness 用量小助手，已适配 DSH 0.2（0.2.1-rc.2）。输入框上方一枚极简余额徽章（框内只有「¥ + 余额数字」两组，点击 ¥ 在新页签打开官方充值页），悬停浮现 24 小时峰谷时间轴（橙=峰、蓝=谷）；按官方规则处理周末全天低谷（2026-08-23 起周六周日全天按低谷价计费，界面与计费同步）；官方余额 5 秒实时刷新，今日消耗独立计费。All-in-one DeepSeek peak/valley meter for DSH 0.2: minimal balance chip with a one-click top-up link, hover 24h peak/valley timeline, official weekend all-off-peak rule, 5s balance refresh and independent spend metering.",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -18,24 +18,23 @@
     },
     "./package.json": "./package.json"
   },
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.0-rc.1"
+  },
   "dsh": {
+    "manifestVersion": 1,
     "bundle": {
       "patch": "./cordis.patch.yml"
     },
     "client": {
-      "platform": "web",
-      "inject": [
-        "@deepseek-ai/dsh-client-runtime",
-        "@deepseek-ai/dsh-client-ui-slots",
-        "@deepseek-ai/dsh-client-ui-settings",
-        "@deepseek-ai/dsh-client-locale"
-      ]
+      "platform": "web"
     }
   },
   "dshhub": {
     "schemaVersion": 1,
     "displayName": "dsh-valley-meter",
-    "summary": "峰谷电表：输入框上方余额数字徽章，悬停浮现 24 小时峰谷时间轴（峰橙/谷蓝 + 当前时刻指针），官方余额 5 秒刷新、今日消耗独立计费，10 套配色预置。",
+    "summary": "峰谷电表：输入框上方余额数字徽章，悬停浮现 24 小时峰谷时间轴（峰橙/谷蓝 + 当前时刻指针），官方余额 5 秒刷新、今日消耗独立计费，10 套配色预置。已适配 DSH 0.2。",
     "categories": [
       "费用",
       "Web UI",
@@ -51,7 +50,7 @@
       ]
     },
     "compatibility": {
-      "dsh": ">=0.1.0-rc.5",
+      "dsh": ">=0.2.0-rc.1",
       "node": ">=20"
     },
     "permissions": {
@@ -66,53 +65,28 @@
     "dsh.plugin.json",
     "README.md",
     "README.en.md",
-    "docs",
+    "CHANGELOG.md",
     "LICENSE",
-    "CHANGELOG.md"
+    "docs"
   ],
   "scripts": {
     "build": "node build.mjs",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "check": "pnpm run typecheck && pnpm run test && pnpm run build"
+    "test": "node --test",
+    "check": "node --check lib/index.js && node --check lib/client.js && node --check lib/typert.host.js && node --test && node build.mjs"
   },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "*",
-    "@deepseek-ai/dsh-client-locale": "*",
-    "@deepseek-ai/dsh-client-runtime": "*",
-    "@deepseek-ai/dsh-client-ui-settings": "*",
-    "@deepseek-ai/dsh-client-ui-slots": "*",
-    "react": "^18.2.0"
-  },
-  "peerDependenciesMeta": {
-    "@deepseek-ai/cordis": {
-      "optional": true
-    },
-    "@deepseek-ai/dsh-client-runtime": {
-      "optional": true
-    },
-    "@deepseek-ai/dsh-client-ui-slots": {
-      "optional": true
-    },
-    "@deepseek-ai/dsh-client-ui-settings": {
-      "optional": true
-    },
-    "@deepseek-ai/dsh-client-locale": {
-      "optional": true
-    },
-    "react": {
-      "optional": true
-    }
+    "@deepseek-ai/cordis": "~4.0.5"
   },
   "dependencies": {
-    "@deepseek-ai/dsh-typert-protocol": "0.1.1-rc.2",
-    "zod": "^4.5.4"
+    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.2",
+    "zod": "^4.4.3"
   },
   "keywords": [
     "deepseek",
     "deepseek-harness",
     "dsh",
     "dsh-plugin",
+    "dsh-0.2",
     "client-plugin",
     "cost",
     "peak",

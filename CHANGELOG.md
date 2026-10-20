@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0 (2026-10-20)
+
+适配 DSH 0.2（0.2.1-rc.2，最新官方版）。
+
+- **Typert 清单升级**:0.2 的 `typert-loader` 要求每个 invocation 的 codec 为 strict codec 且带 `create()` 工厂。`lib/typert.host.js` 改用 `createTypertRemoteInfo()` 组装,`TYPERT.invocations` 直接返回 `$remote.descriptors`;已用 0.2 的真实 `validateTypertManifest()` 通过校验。
+- **客户端 RPC 修复**:0.2 的 Client Typert 注册表同样要求 result / parameter codec 带 `create()`(`validateCodec`)。旧的 `{mode,typeSymbol,schema}` 会被拒绝,改为 `create: () => ({ parse })`。
+- **`settings` 服务变更**:0.2 移除了 `settings.get(ns)`,只保留表单 `describe/update/configure`。余额查询改用 `credentials.resolve()` + `DEEPSEEK_BASE_URL`(或配置 `baseURL`)+ 内置官方端点,不再依赖设置分节。
+- **`dsh.client` 声明**:移除已不存在的 `@deepseek-ai/dsh-client-runtime` / `dsh-client-ui-slots` 模块声明;插件只用平台内置的 `react`。
+- **设置分区文案**:不再把语言 id 当作 locale 命名空间(0.2 会据此注入 `t` 并覆盖自带文案);改由 inject face 自带 `t`,`locale/change` 时重注册。
+- **包清单**:新增 `dsh.manifestVersion: 1`、`engines.dsh: ">=0.2.0-rc.1"`;`dshhub.compatibility` 同步到 0.2。
+- **依赖升级**:`@deepseek-ai/dsh-typert-protocol` → `0.2.1-rc.2`,`zod` → `^4.4.3`;移除失效的 client 侧 peer。
+- **模型价格表**:新增 `deepseek-flash`(DeepSeek-V4.1-Flash),保留 `deepseek-v4-pro` 与旧 id 兼容项;usage 同时兼容 `usage` 与 `finish` chunk。
+- **工程化**:补 `build.mjs`(产物一致性 + strict codec 校验)、`test/`(node:test,10 项)、`pnpm check`;修复 `package.json` 中重复的 `colorPreset` 键。
+- **本地验证**:在 DSH 0.2.1-rc.2 桌面版(profile `desktop`)link 安装,Host 服务、官方余额(¥12.59)与客户端轮询 `getState` 均正常。
+
 ## 0.1.6 (2026-09-15)
 
 - 同步 `dsh.plugin.json` 里的版本与描述(此前停留在 0.1.0,且描述里还写着已经不存在的「极简/详细样式切换」)。

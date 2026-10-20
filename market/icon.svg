@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="dsh-valley-meter">
+  <rect width="64" height="64" rx="14" fill="#1b1d22"/>
+  <rect x="8" y="8" width="48" height="48" rx="10" fill="none" stroke="#2c2f36"/>
+  <!-- 24h timeline: valley (blue) with two peak (orange) windows -->
+  <rect x="12" y="28" width="40" height="10" rx="5" fill="#425066"/>
+  <rect x="18" y="28" width="8" height="10" fill="#CA6924"/>
+  <rect x="34" y="28" width="8" height="10" fill="#CA6924"/>
+  <!-- current-time marker -->
+  <rect x="31" y="22" width="2" height="22" rx="1" fill="#ffffff"/>
+  <circle cx="32" cy="33" r="3.2" fill="#ffffff"/>
+  <text x="32" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="8" fill="#9aa0aa">PEAK / VALLEY</text>
+</svg>
