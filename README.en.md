@@ -13,13 +13,13 @@
 
 </div>
 
-![balance-number chip](docs/preview.png?v=5)
+![balance-number chip](docs/preview.png?v=6)
 
 **Hover to reveal the peak/valley timeline**
 
-![hover state](docs/screenshots/hover.png)
+![hover state](docs/screenshots/hover.png?v=6)
 
-![hover demo](docs/demo.gif)
+![hover demo](docs/demo.gif?v=6)
 
 ## What it is
 

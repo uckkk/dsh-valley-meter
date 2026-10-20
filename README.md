@@ -13,13 +13,13 @@
 
 </div>
 
-![余额数字徽章](docs/preview.png?v=5)
+![余额数字徽章](docs/preview.png?v=6)
 
 **悬停浮现峰谷时间轴**
 
-![悬停态](docs/screenshots/hover.png)
+![悬停态](docs/screenshots/hover.png?v=6)
 
-![悬停展开演示](docs/demo.gif)
+![悬停展开演示](docs/demo.gif?v=6)
 
 ## 这是什么
 
