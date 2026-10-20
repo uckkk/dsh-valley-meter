@@ -75,16 +75,23 @@ Then append a row to the profile's `cordis.patch.yml` (or select the bundle in t
 
 HMR recomposes the profile and the browser loads the new client bundle without a restart.
 
-### Option 2: market / npm
+### Option 2: market install
 
-The DSH 0.2 market index installs npm sources:
+A DSH 0.2 plugin market is a self-hosted format-1 index. This repository's index is hosted on GitHub Pages:
 
-```bash
-dsh plugin --profile desktop add dsh-valley-meter@0.2.0
+```text
+https://uckkk.github.io/dsh-valley-meter/market/index.json
 ```
 
-Once published, add this repository's `market/index.json` in
-**Plugins → More → Custom plugin markets → Add index source** and install from **Discover**.
+Open **Plugins → More → Custom plugin markets → Discover → Add index source**, paste that URL, then search "valley / peak / balance" and install from **Discover**. The index currently pins a Git commit (GitHub source), so it does not depend on an npm release.
+
+Or install from the CLI:
+
+```bash
+dsh plugin --profile desktop add "git+https://github.com/uckkk/dsh-valley-meter.git#<commit>"
+```
+
+Once a release is on npm, the index `source` can switch to `{ "type": "npm" }` and `dsh plugin add dsh-valley-meter@0.2.0` works too.
 
 ## Configuration
 

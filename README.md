@@ -75,16 +75,26 @@ dsh plugin --profile desktop add link:/absolute/path/to/dsh-valley-meter
 
 HMR 会重组合配置,浏览器自动加载新的 client bundle,无需重启。
 
-### 方式二:市场 / npm 安装
+### 方式二:市场安装
 
-插件市场的索引格式(DSH 0.2 的「发现」页)按 `npm` 源安装:
+DSH 0.2 的插件市场是自托管的 format-1 索引。本仓库的索引已托管在 GitHub Pages:
 
-```bash
-dsh plugin --profile desktop add dsh-valley-meter@0.2.0
+```text
+https://uckkk.github.io/dsh-valley-meter/market/index.json
 ```
 
-发布到 npm 后,也可以把本仓库的 `market/index.json` 添加到
-**插件 → 更多 → 自定义插件市场 → 添加索引源**,在「发现」页一键安装。
+打开 **插件 → 更多 → 自定义插件市场** → **发现 → 添加索引源**,粘贴上面的 URL,
+即可在「发现」页搜索「峰谷 / valley / balance」并一键安装。索引当前锁定 Git commit
+(GitHub 源),不依赖 npm 是否已发布。
+
+也可以直接命令行安装:
+
+```bash
+dsh plugin --profile desktop add "git+https://github.com/uckkk/dsh-valley-meter.git#<commit>"
+```
+
+版本发布到 npm 后,索引里的 `source` 可切换为 `{ "type": "npm" }`,届时
+`dsh plugin add dsh-valley-meter@0.2.0` 也可用。
 
 ## 配置
 
