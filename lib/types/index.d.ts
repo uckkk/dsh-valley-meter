@@ -9,11 +9,14 @@ export interface PeakPhase {
 }
 
 export interface Balance {
+  status: 'ok' | 'off' | 'error' | string
   total: number | null
   granted: number
   topped: number
+  /** 展示用符号(默认「¥」),不是 ISO 货币码。 */
   currency: string
-  at: number | null
+  fetchedAt: number | null
+  message: string
 }
 
 export interface ValleyConfig {
@@ -27,8 +30,11 @@ export interface ValleyConfig {
   style: string
   showPeriod: boolean
   showCountdown: boolean
+  colorPreset?: string
   /** 是否应用「周六周日全天低谷」规则(默认 true)。 */
   weekendOffPeak: boolean
+  /** 余额自动刷新周期(秒,最低 5)。 */
+  balanceRefreshSec?: number
 }
 
 export interface ValleyState {
@@ -37,8 +43,10 @@ export interface ValleyState {
   peak: PeakPhase | null
   balance: Balance
   todayCost: number | null
+  todayCalls: number
+  /** 今日各 UTC 小时的费用(24 格)。 */
+  todayHours: number[]
   config: ValleyConfig
-  sourcePresent: boolean
 }
 
 export type ConfigPatch = Partial<ValleyConfig>
