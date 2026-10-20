@@ -76,11 +76,11 @@
       "versions": [
         {
           "version": "0.2.0",
-          "publishTimestamp": 1792461488,
+          "publishTimestamp": 1792461935,
           "source": {
             "type": "git",
             "url": "https://github.com/uckkk/dsh-valley-meter",
-            "commit": "a8812a4b08ef9ebe5bc1daca6ff02f0dc3bcb137"
+            "commit": "3581505d7730cc050127d8224ca2281ce1eef93f"
           },
           "engines": {
             "dsh": ">=0.2.0-rc.1"
